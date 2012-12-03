@@ -1,0 +1,9 @@
+{
+  "name": "OneClick",
+  "version": "0.8.0",
+  "description": "OneClick Chrome Extension for easy torrent content downloading.",
+  "author": "Patrick Williams <patrick@bittorrent.com>",
+  "dependencies": {
+    "grunt-crx": "0.1.2"
+  }
+}

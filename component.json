@@ -1,0 +1,8 @@
+{
+  "name": "OneClick",
+  "version": "0.8.0",
+  "dependencies": {
+    "btapp": "latest",
+    "backbrace": "latest"
+  }
+}
