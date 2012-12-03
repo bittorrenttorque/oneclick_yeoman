@@ -160,3 +160,36 @@ __package.json__
   }
 }
 ```
+
+Got distracted with a few random patches to projects...but now jstorage is available via bower/yeoman and has a proper component.json file.
+
+__(Mon 2:32 PM)__  
+Only a tiny bit left...just create a crx grunt task and call it a day. I have the pem file in its own repo located in the same parent directory as this project.
+```
+{
+   //...
+   grunt.loadNpmTasks('grunt-crx');
+   //...
+   grunt.initConfig({
+      crx: {
+         oneclick: {
+           "src": "app/",
+           "dest": "dist/",
+           "privateKey": "../oneclick_pem/oneclick.pem",
+           "baseURL": "http://torque.bittorrent.com/oneclick/",
+           "exclude": [ 
+             ".git", 
+             ".svn", 
+             "components/*/*/**"
+           ],
+           "filename": "OneClick.crx"
+         }
+       }
+    }
+    //...
+ }
+```
+
+now running `yeoman crx` builds a signed crx file and drops it into a dist directory.
+
+DONE!
