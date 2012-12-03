@@ -119,6 +119,8 @@ __(Sun 10:21 PM)__
 After porting the javascript in the old application.js file to main.js, everything was up and running. I got a bit distracted trying to figure out how to build on top of bower dependencies, but I'll save that for a blog post, and potentially a Yeoman generator.
 
 I added a `component.json` file so that I wouldn't need to include the component directories in the project, instead pulling them in by running `yeoman install`. The file looked like the following:
+
+__component.json__
 ```json
 {
   "name": "OneClick",
@@ -133,6 +135,8 @@ I added a `component.json` file so that I wouldn't need to include the component
 Next up is figuring out how to package the extension. I'm using https://github.com/oncletom/grunt-crx as a starting point.
 
 To ensure we have the grunt-crx node modules, we need to create a `package.json` file with grunt-crx as a dependency. It looks like the following:
+
+__package.json__
 ```json
 {
   "name": "OneClick",
