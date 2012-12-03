@@ -1,12 +1,21 @@
 module.exports = function( grunt ) {
   'use strict';
-  //
-  // Grunt configuration:
-  //
-  // https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
-  //
-  grunt.initConfig({
 
+  grunt.initConfig({
+    crx: {
+      oneclick: {
+        "src": "app/",
+        "dest": "dist/",
+        "privateKey": "../oneclick_pem/oneclick.pem",
+        "baseURL": "http://torque.bittorrent.com/oneclick/",
+        "exclude": [ 
+          ".git", 
+          ".svn", 
+          "components/*/*/**"
+        ],
+        "filename": "OneClick.crx"
+      }
+    },
     // Project configuration
     // ---------------------
 
@@ -174,5 +183,5 @@ module.exports = function( grunt ) {
 
   // Alias the `test` task to run the `mocha` task instead
   grunt.registerTask('test', 'mocha');
-
+  grunt.loadNpmTasks('grunt-crx');
 };
