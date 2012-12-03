@@ -49,3 +49,11 @@ identical    app/index.html
 identical    app/manifest.json
 identical    app/_locales/en/messages.json
 ```
+
+* Loaded the unpacked extension via the [chrome://chrome/extensions/](chrome extensions page)...made sure to select the app directory, not the root.
+* The permissions in the manifest were busted and showed a warning. Replaced the array with a single empty string with an empty array. Need to remember to submit a patch to [the Yeoman ChromeApp Generator project](https://github.com/yeoman/generator-chromeapp).
+
+K. I think I'm ready to roll porting everything over. I recently added support for [Bower](http://twitter.github.com/bower/) to both [Btapp.js](https://github.com/bittorrenttorque/btapp/) and [Backbrace.js](https://github.com/bittorrenttorque/backbrace/), so I'm going to attempt to take advantage of that when reassembling this extension.
+
+__(Sun 5:13 PM)__  
+Looks like I'm in charge of dinner...I'll be back. 
