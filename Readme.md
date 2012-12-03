@@ -1,3 +1,15 @@
+```
+git submodule init //this is to pull in the .pem file for signing
+git submodule update
+yeoman install //pull in all the browser extension javascript dependencies
+```
+Add the `app` directory as an unpacked chrome extension on the [extension page](chrome://chrome/extensions/)
+```
+npm install //pull in the crx packaging dependencies
+```
+
+#Back Story
+
 Its been over 6 months since I built and released OneClick, and in that time Google has changed [the requirements for installing extensions](http://developer.chrome.com/extensions/manifestVersion.html#manifest-v1-changes). They've also had a team busy building [Yeoman](http://yeoman.io) which looks like a great development/scaffolding tool. They have a generator for chrome apps, and I know there's a grunt plugin for building crx files, and I want to use all these things!
 
 So I'm going to blog while I do the rewrite using these tools. Here it goes.
@@ -68,21 +80,29 @@ yeoman install btapp
 yeoman install backbrace
 ```
 These libraries and their dependencies are put into a components directory. Lets update manifest.json to add those as background scripts.
+
+__manifest.json__
 ```json
-"background": {
-   "scripts": [
-     "components/jquery/jquery.js",
-     "components/underscore/underscore.js",
-     "components/backbone/backbone.js",
-     "components/jStorage/jstorage.js",
-     "components/btapp/btapp.min.js",
-     "components/backbrace/backbrace.js",
-     "main.js"
-   ]
+{
+   //...
+   "background": {
+      "scripts": [
+        "components/jquery/jquery.js",
+        "components/underscore/underscore.js",
+        "components/backbone/backbone.js",
+        "components/jStorage/jstorage.js",
+        "components/btapp/btapp.min.js",
+        "components/backbrace/backbrace.js",
+        "main.js"
+      ]
+   }
+   //...
 }
 ```
 
 To test that we can still connect to the underlying Torque client, I updated main.js to the following.
+
+__main.js__
 ```js
 jQuery(function() {
     var btapp = new Btapp();
@@ -93,13 +113,50 @@ jQuery(function() {
 });
 ```
 No luck! We need to make this extension a npapi plugin, and provide the dll and plugin directory to load the native mime type handlers. Lets copy the following from the previous manifest.json over to the new one.
+
+__manifest.json__
 ```js
-"plugins": [
-   /**
-   { "path": "plugin-linux.so" },
-   **/
-   { "path": "plugins/npTorqueChrome.dll" },
-   { "path": "plugins/TorqueChrome.plugin" }
-]   
+{
+   //...
+   "plugins": [
+      // { "path": "plugin-linux.so" },
+      { "path": "plugins/npTorqueChrome.dll" },
+      { "path": "plugins/TorqueChrome.plugin" }
+   ]
+   //...
+}
 ```
 
+__(Sun 10:21 PM)__  
+After porting the javascript in the old application.js file to main.js, everything was up and running. I got a bit distracted trying to figure out how to build on top of bower dependencies, but I'll save that for a blog post, and potentially a Yeoman generator.
+
+I added a `component.json` file so that I wouldn't need to include the component directories in the project, instead pulling them in by running `yeoman install`. The file looked like the following:
+
+__component.json__
+```json
+{
+  "name": "OneClick",
+  "version": "0.8.0",
+  "dependencies": {
+    "btapp": "latest",
+    "backbrace": "latest"
+  }
+}
+```
+
+Next up is figuring out how to package the extension. I'm using https://github.com/oncletom/grunt-crx as a starting point.
+
+To ensure we have the grunt-crx node modules, we need to create a `package.json` file with grunt-crx as a dependency. It looks like the following:
+
+__package.json__
+```json
+{
+  "name": "OneClick",
+  "version": "0.8.0",
+  "description": "OneClick Chrome Extension for easy torrent content downloading.",
+  "author": "Patrick Williams <patrick@bittorrent.com>",
+  "dependencies": {
+    "grunt-crx": "0.1.2"
+  }
+}
+```
