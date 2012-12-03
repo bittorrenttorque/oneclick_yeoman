@@ -8,10 +8,32 @@
     "128": "icon-128.png"
   },
   "default_locale": "en",
-  "app": {
-    "background": {
-      "scripts": ["main.js"]
-    }
+  "background": {
+    "scripts": [
+      "components/jquery/jquery.js",
+      "components/underscore/underscore.js",
+      "components/backbone/backbone.js",
+      "components/jStorage/jstorage.js",
+      "components/btapp/plugin.btapp.js",
+      "components/btapp/pairing.btapp.js",
+      "components/btapp/client.btapp.js",
+      "components/btapp/btapp.js",
+      "components/backbrace/backbrace.js",
+      "main.js"
+    ]
   },
-  "permissions": [""]
+  "permissions": [
+    "tabs",
+    "webRequest", 
+    "webRequestBlocking", 
+    "http://*/*"
+  ],
+  "plugins": [
+    { 
+      "path": "plugins/npTorqueChrome.dll" 
+    },
+    { 
+      "path": "plugins/TorqueChrome.plugin" 
+    }
+  ]
 }
