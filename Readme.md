@@ -132,3 +132,15 @@ I added a `component.json` file so that I wouldn't need to include the component
 
 Next up is figuring out how to package the extension. I'm using https://github.com/oncletom/grunt-crx as a starting point.
 
+To ensure we have the grunt-crx node modules, we need to create a `package.json` file with grunt-crx as a dependency. It looks like the following:
+```json
+{
+  "name": "OneClick",
+  "version": "0.8.0",
+  "description": "OneClick Chrome Extension for easy torrent content downloading.",
+  "author": "Patrick Williams <patrick@bittorrent.com>",
+  "dependencies": {
+    "grunt-crx": "0.1.2"
+  }
+}
+```
