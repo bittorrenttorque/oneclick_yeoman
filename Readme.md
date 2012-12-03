@@ -80,21 +80,29 @@ yeoman install btapp
 yeoman install backbrace
 ```
 These libraries and their dependencies are put into a components directory. Lets update manifest.json to add those as background scripts.
+
+__manifest.json__
 ```json
-"background": {
-   "scripts": [
-     "components/jquery/jquery.js",
-     "components/underscore/underscore.js",
-     "components/backbone/backbone.js",
-     "components/jStorage/jstorage.js",
-     "components/btapp/btapp.min.js",
-     "components/backbrace/backbrace.js",
-     "main.js"
-   ]
+{
+   //...
+   "background": {
+      "scripts": [
+        "components/jquery/jquery.js",
+        "components/underscore/underscore.js",
+        "components/backbone/backbone.js",
+        "components/jStorage/jstorage.js",
+        "components/btapp/btapp.min.js",
+        "components/backbrace/backbrace.js",
+        "main.js"
+      ]
+   }
+   //...
 }
 ```
 
 To test that we can still connect to the underlying Torque client, I updated main.js to the following.
+
+__main.js__
 ```js
 jQuery(function() {
     var btapp = new Btapp();
@@ -105,14 +113,18 @@ jQuery(function() {
 });
 ```
 No luck! We need to make this extension a npapi plugin, and provide the dll and plugin directory to load the native mime type handlers. Lets copy the following from the previous manifest.json over to the new one.
+
+__manifest.json__
 ```js
-"plugins": [
-   /**
-   { "path": "plugin-linux.so" },
-   **/
-   { "path": "plugins/npTorqueChrome.dll" },
-   { "path": "plugins/TorqueChrome.plugin" }
-]   
+{
+   //...
+   "plugins": [
+      // { "path": "plugin-linux.so" },
+      { "path": "plugins/npTorqueChrome.dll" },
+      { "path": "plugins/TorqueChrome.plugin" }
+   ]
+   //...
+}
 ```
 
 __(Sun 10:21 PM)__  
