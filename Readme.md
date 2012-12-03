@@ -57,3 +57,49 @@ K. I think I'm ready to roll porting everything over. I recently added support f
 __(Sun 5:13 PM)__  
 
 Looks like I'm in charge of dinner...I'll be back. 
+
+__(Sun 6:32 PM)__  
+
+Back in the game!
+
+Lets add the btapp and backbrace libraries.
+```bs
+yeoman install btapp
+yeoman install backbrace
+```
+These libraries and their dependencies are put into a components directory. Lets update manifest.json to add those as background scripts.
+```json
+"background": {
+   "scripts": [
+     "components/jquery/jquery.js",
+     "components/underscore/underscore.js",
+     "components/backbone/backbone.js",
+     "components/jStorage/jstorage.js",
+     "components/btapp/btapp.min.js",
+     "components/backbrace/backbrace.js",
+     "main.js"
+   ]
+}
+```
+
+To test that we can still connect to the underlying Torque client, I updated main.js to the following.
+```js
+jQuery(function() {
+    var btapp = new Btapp();
+    btapp.connect({
+        mime_type: 'application/x-bittorrent-torquechrome'
+    });
+    btapp.on('all', _.bind(console.log, console));
+});
+```
+No luck! Looks like the plugin is detected, but can't be used. We need to make this extension a npapi plugin, and provide the dll and plugin directory to load the native mime type handlers. Lets copy the following from the previous manifest.json over to the new one.
+```js
+"plugins": [
+   /**
+   { "path": "plugin-linux.so" },
+   **/
+   { "path": "plugins/npTorqueChrome.dll" },
+   { "path": "plugins/TorqueChrome.plugin" }
+]   
+```
+
