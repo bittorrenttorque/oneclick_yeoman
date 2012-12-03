@@ -115,3 +115,17 @@ No luck! We need to make this extension a npapi plugin, and provide the dll and 
 ]   
 ```
 
+__(Sun 10:21 PM)__  
+After porting the javascript in the old application.js file to main.js, everything was up and running. I got a bit distracted trying to figure out how to build on top of bower dependencies, but I'll save that for a blog post, and potentially a Yeoman generator.
+
+I added a `component.json` file so that I wouldn't need to include the component directories in the project, instead pulling them in by running `yeoman install`. The file looked like the following:
+```json
+{
+  "name": "OneClick",
+  "version": "0.8.0",
+  "dependencies": {
+    "btapp": "latest",
+    "backbrace": "latest"
+  }
+}
+```
