@@ -92,7 +92,7 @@ jQuery(function() {
     btapp.on('all', _.bind(console.log, console));
 });
 ```
-No luck! Looks like the plugin is detected, but can't be used. We need to make this extension a npapi plugin, and provide the dll and plugin directory to load the native mime type handlers. Lets copy the following from the previous manifest.json over to the new one.
+No luck! We need to make this extension a npapi plugin, and provide the dll and plugin directory to load the native mime type handlers. Lets copy the following from the previous manifest.json over to the new one.
 ```js
 "plugins": [
    /**
