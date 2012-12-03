@@ -1,4 +1,3 @@
-
 Its been over 6 months since I built and released OneClick, and in that time Google has changed [the requirements for installing extensions](http://developer.chrome.com/extensions/manifestVersion.html#manifest-v1-changes). They've also had a team busy building [Yeoman](http://yeoman.io) which looks like a great development/scaffolding tool. They have a generator for chrome apps, and I know there's a grunt plugin for building crx files, and I want to use all these things!
 
 So I'm going to blog while I do the rewrite using these tools. Here it goes.
@@ -56,4 +55,5 @@ identical    app/_locales/en/messages.json
 K. I think I'm ready to roll porting everything over. I recently added support for [Bower](http://twitter.github.com/bower/) to both [Btapp.js](https://github.com/bittorrenttorque/btapp/) and [Backbrace.js](https://github.com/bittorrenttorque/backbrace/), so I'm going to attempt to take advantage of that when reassembling this extension.
 
 __(Sun 5:13 PM)__  
+
 Looks like I'm in charge of dinner...I'll be back. 
