@@ -129,3 +129,6 @@ I added a `component.json` file so that I wouldn't need to include the component
   }
 }
 ```
+
+Next up is figuring out how to package the extension. I'm using https://github.com/oncletom/grunt-crx as a starting point.
+
