@@ -1,4 +1,0 @@
-/* Localized versions of Info.plist keys */
-
-CFBundleName = "TorqueChrome.plugin";
-NSHumanReadableCopyright = "Copyright 2012 BitTorrent, Inc";
