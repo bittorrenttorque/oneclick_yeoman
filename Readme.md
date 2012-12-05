@@ -163,7 +163,7 @@ __package.json__
 
 Got distracted with a few random patches to projects...but now jstorage is available via bower/yeoman and has a proper component.json file.
 
-__(Mon 2:32 PM)__  
+__(Mon 2:32 AM)__  
 Only a tiny bit left...just create a crx grunt task and call it a day. I have the pem file in its own repo located in the same parent directory as this project.
 ```
 {
